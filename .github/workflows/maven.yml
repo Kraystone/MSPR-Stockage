@@ -37,4 +37,4 @@ jobs:
           mvn clean install compile package
       - name: list files
         run:
-        ls -la
+          ls -la

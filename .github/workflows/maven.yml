@@ -22,8 +22,8 @@ jobs:
           port: ${{}}
           script: whoami && ls -la
       - name: check git
-          uses: actions/checkout@v2
-          with:
+        uses: actions/checkout@v2
+        with:
           repository: Kraystone/MSPR-Script
           ref: master
       - name: java

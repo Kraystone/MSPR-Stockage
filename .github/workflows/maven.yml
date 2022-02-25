@@ -35,6 +35,6 @@ jobs:
         working-directory: ./src/main/java
         run:
           mvn clean install compile package
-          - name: list files
-            run:
-              ls -la
+            - name: list files
+              run:
+                ls -la

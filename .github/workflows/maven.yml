@@ -1,0 +1,41 @@
+# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
+
+name: install
+
+on:
+  push:
+    branches: [CICD]
+  pull_request:
+    branches: [CICD]
+
+jobs:
+  install:
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{}}
+          username: ${{}}
+          password: ${{}}
+          port: ${{}}
+          script: whoami && ls -la
+      - name: check git
+          uses: actions/checkout@v2
+        with:
+          repository: Kraystone/MSPR-Script
+          ref: master
+      - name: java
+          uses: actions/setup-java@v2
+          with:
+            distribution: 'temurin'
+            java-version: '17'
+      - name: compilation
+          working-directory: ./src/main/java
+          run:
+            mvn clean install compile package
+          - name: list files
+            run:
+              ls -la

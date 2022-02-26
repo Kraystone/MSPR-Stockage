@@ -38,3 +38,5 @@ jobs:
       - name: list files
         run:
           ls -la
+      
+      - run: echo "Job done !"

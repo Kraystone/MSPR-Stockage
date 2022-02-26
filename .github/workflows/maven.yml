@@ -13,14 +13,14 @@ jobs:
   deployement:
     runs-on: ubuntu-latest
     steps:
-      - name: SSH
-        uses: appleboy/ssh-action@v0.1.4
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
         with:
-          host: ${{}}
-          username: ${{}}
-          password: ${{}}
-          port: ${{}}
-          script: whoami && ls -la
+          key: ${{ secrets.SSH_LOGIN }}
+          known_hosts: ${{ secrets.SSH_KNOWHOSTS }}
+      - name: rsync over ssh
+        run: rsync ./foo/ user@remote:bar/
+        script: whoami && ls -la
       - name: check git
         uses: actions/checkout@v2
         with:
